@@ -3,18 +3,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.IllegalFormatException;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 public class main {
     static Scanner reader = new Scanner(System.in);
-    public static void main(String[] args) throws FileNotFoundException{
+    public static void main(String[] args){
         Set<String> someWords = new HashSet<String>();
-        String addWord;
-        String exitWord;
-        System.out.println("Словарь v0.1b");
+        System.out.print("Developed by /u03C9/");
+        System.out.println("Словарь v0.2b");
         System.out.print("Чтение файла... ");
         try{
             FileReader fr = new FileReader("vocabulary.txt");
@@ -28,29 +25,49 @@ public class main {
             System.out.print("Файл не найден");
         }
         catch (Exception e){
-            System.out.print("Непредвиденная ошибка");
+            System.out.println("Непредвиденная ошибка");
             e.printStackTrace();
         }
         System.out.println("Вывод содержимого словаря...");
         for (String entry: someWords) {
             System.out.println(entry);
         }
-        //FileWriter fw = new FileWriter("vocabulary.txt");
-        //fw.write("окно");
-        //fw.close();
-
-        for (String entry: someWords){
-            System.out.println(entry);
-        }
-        //System.out.println("Выход из цикла после добавления пяти новых слов");
-        //System.out.println("Какие слова добавлять?");
-        /*while (true) {
-            if (someWords.contains(addWord = reader.next())) {
-                System.out.println("Такое слово уже есть");
-            } else {
-                someWords.add(addWord);
+        System.out.println("Чтобы внести новые слова введите Add, чтобы выйти - Exit");
+        String responce = reader.next();
+        responce = responce.toLowerCase();
+        if (responce.equals("add")) {
+            System.out.println("Вводите каждое слово с новой строки. Для выхода введите c");
+            while (true){
+                String stringToAdd=reader.next();
+                if (stringToAdd.equals("c") || stringToAdd.equals("с")){ //Английская и русская
+                    break;
+                }
+                else {
+                    someWords.add(stringToAdd);
+                }
             }
-        }*/
-
+        }
+        else if (responce.equals("exit")){
+            System.out.print("Выход из программы.");
+            return;
+        }
+        else {
+            System.out.print("Неверное значение приводит к выходу.");
+        }
+        try {
+            FileWriter fw = new FileWriter("vocabulary.txt");
+            for (String entry: someWords){
+                fw.write(entry+"\r\n");
+                fw.flush();
+            }
+            fw.close();
+        }
+        catch (IOException e){
+            System.out.print("Ошибка ввода-вывода");
+        }
+        catch (Exception e){
+            System.out.println("Непредвиденная ошибка");
+            e.printStackTrace();
+        }
     }
 }
