@@ -39,7 +39,7 @@ public class main {
             System.out.println("Вводите каждое слово с новой строки. Для выхода введите c");
             while (true){
                 String stringToAdd=reader.next();
-                if (stringToAdd.equals("c") || stringToAdd.equals("с")){ //Английская и русская
+                if (stringToAdd.equals("c") || stringToAdd.equals("с") || stringToAdd.equals("C") || stringToAdd.equals("С")){ //Английская и русская
                     break;
                 }
                 else {
@@ -52,7 +52,7 @@ public class main {
             return;
         }
         else {
-            System.out.print("Неверное значение приводит к выходу.");
+            System.out.print("Неверное значение приводит к завершению программы.");
         }
         try {
             FileWriter fw = new FileWriter("vocabulary.txt");
