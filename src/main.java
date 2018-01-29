@@ -11,10 +11,10 @@ public class main {
     public static void main(String[] args){
         Set<String> someWords = new HashSet<String>();
         System.out.print("Developed by /u03C9/");
-        System.out.println("Словарь v0.2b");
+        System.out.println("Словарь v0.3b");
         System.out.print("Чтение файла... ");
         try{
-            FileReader fr = new FileReader("vocabulary.txt");
+            FileReader fr = new FileReader("mainVocabulary.txt");
             Scanner read = new Scanner(fr);
             while (read.hasNextLine()){
                 someWords.add(read.nextLine());
@@ -32,30 +32,40 @@ public class main {
         for (String entry: someWords) {
             System.out.println(entry);
         }
-        System.out.println("Чтобы внести новые слова введите Add, чтобы выйти - Exit");
+        System.out.println("Чтобы внести новые слова в основной словарь введите Add, чтобы выйти - Exit, чтобы запустить сравнение основного и дополнительного словарей - Compare");
         String responce = reader.next();
         responce = responce.toLowerCase();
-        if (responce.equals("add")) {
-            System.out.println("Вводите каждое слово с новой строки. Для выхода введите c");
-            while (true){
-                String stringToAdd=reader.next();
-                if (stringToAdd.equals("c") || stringToAdd.equals("с") || stringToAdd.equals("C") || stringToAdd.equals("С")){ //Английская и русская
-                    break;
+        switch (responce){
+            case "add":
+                System.out.println("Вводите каждое слово с новой строки. Для выхода введите c");
+                while (true){
+                    String stringToAdd=reader.next();
+                    if (stringToAdd.equals("c") || stringToAdd.equals("с") || stringToAdd.equals("C") || stringToAdd.equals("С")){ //Английская и русская
+                        break;
+                    }
+                    else {
+                        someWords.add(stringToAdd);
+                    }
                 }
-                else {
-                    someWords.add(stringToAdd);
+                break;
+            case "exit":
+                System.out.print("Выход из программы.");
+                return;
+            case "compare":
+                try {
+                    compare cmp = new compare();
                 }
-            }
-        }
-        else if (responce.equals("exit")){
-            System.out.print("Выход из программы.");
-            return;
-        }
-        else {
-            System.out.print("Неверное значение приводит к завершению программы.");
+                catch (Exception e){
+                    System.out.println("Непредвиденная ошибка");
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                System.out.println("Неверное значение приводит к завершению программы.");
+                break;
         }
         try {
-            FileWriter fw = new FileWriter("vocabulary.txt");
+            FileWriter fw = new FileWriter("mainVocabulary.txt");
             for (String entry: someWords){
                 fw.write(entry+"\r\n");
                 fw.flush();
