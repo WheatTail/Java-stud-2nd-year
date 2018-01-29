@@ -42,8 +42,8 @@ public class compare {
             throw new Exception();
         }
         System.out.println("Чтобы проверить перекрытия введите Cover");
-        System.out.println("Чтобы проверить вхождения, которых нет в основном словаре введите 2");
-        System.out.println("Чтобы проверить вхождения, которых нет в дополнительном словаре введите 3");
+        System.out.println("Чтобы проверить вхождения, которых нет в основном словаре введите Right");
+        System.out.println("Чтобы проверить вхождения, которых нет в дополнительном словаре введите Left");
         String response = reader.next();
         response=response.toLowerCase();
         switch (response){
@@ -58,6 +58,19 @@ public class compare {
                 }
                 break;
             case "left":
+                System.out.println("Вывод вхождений, имеющихся только в основном словаре:");
+                for (String mainEntry: mainVocabulary){
+                    boolean exist = false;
+                    for (String additionalEntry: additionalVocabulary){
+                        if(mainEntry.equals(additionalEntry)){
+                            exist=true;
+                            break;
+                        }
+                    }
+                    if (false==exist){
+                        System.out.println(mainEntry);
+                    }
+                }
                 break;
             case "right":
                 break;
@@ -65,5 +78,6 @@ public class compare {
                 System.out.println("Неверное значение приводит к завершению");
                 return;
         }
+        return;
     }
 }

@@ -11,7 +11,7 @@ public class main {
     public static void main(String[] args){
         Set<String> someWords = new HashSet<String>();
         System.out.print("Developed by /u03C9/");
-        System.out.println("Словарь v0.4b");
+        System.out.println("Словарь v0.5b");
         System.out.print("Чтение файла... ");
         try{
             FileReader fr = new FileReader("mainVocabulary.txt");
