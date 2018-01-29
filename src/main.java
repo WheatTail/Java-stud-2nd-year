@@ -11,7 +11,7 @@ public class main {
     public static void main(String[] args){
         Set<String> someWords = new HashSet<String>();
         System.out.print("Developed by /u03C9/");
-        System.out.println("Словарь v0.3b");
+        System.out.println("Словарь v0.4b");
         System.out.print("Чтение файла... ");
         try{
             FileReader fr = new FileReader("mainVocabulary.txt");
@@ -23,10 +23,12 @@ public class main {
         }
         catch (FileNotFoundException e){
             System.out.print("Файл не найден");
+            return;
         }
         catch (Exception e){
             System.out.println("Непредвиденная ошибка");
             e.printStackTrace();
+            return;
         }
         System.out.println("Вывод содержимого словаря...");
         for (String entry: someWords) {
@@ -54,10 +56,12 @@ public class main {
             case "compare":
                 try {
                     compare cmp = new compare();
+                    cmp.main(args);
                 }
                 catch (Exception e){
                     System.out.println("Непредвиденная ошибка");
                     e.printStackTrace();
+                    return;
                 }
                 break;
             default:
@@ -74,10 +78,12 @@ public class main {
         }
         catch (IOException e){
             System.out.print("Ошибка ввода-вывода");
+            return;
         }
         catch (Exception e){
             System.out.println("Непредвиденная ошибка");
             e.printStackTrace();
+            return;
         }
     }
 }
