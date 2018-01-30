@@ -59,25 +59,47 @@ public class compare {
                 break;
             case "left":
                 System.out.println("Вывод вхождений, имеющихся только в основном словаре:");
-                for (String mainEntry: mainVocabulary){
-                    boolean exist = false;
-                    for (String additionalEntry: additionalVocabulary){
-                        if(mainEntry.equals(additionalEntry)){
-                            exist=true;
-                            break;
-                        }
-                    }
-                    if (false==exist){
-                        System.out.println(mainEntry);
-                    }
+                try{
+                    leftRightCompare(mainVocabulary, additionalVocabulary);
+                }
+                catch (Exception e){
+                    System.out.println("Непредвиденная ошибка");
+                    e.printStackTrace();
                 }
                 break;
             case "right":
+                System.out.println("Вывод вхождений, имеющихся только в дополнительном словаре:");
+                try{
+                    leftRightCompare(additionalVocabulary, mainVocabulary);
+                }
+                catch (Exception e){
+                    System.out.println("Непредвиденная ошибка");
+                    e.printStackTrace();
+                }
                 break;
             default:
                 System.out.println("Неверное значение приводит к завершению");
                 return;
         }
         return;
+    }
+    public static void leftRightCompare(Set<String> firstSet, Set<String> secondSet) throws Exception{
+        try{
+            for (String firstEntry: firstSet){
+                boolean exist = false;
+                for (String additionalEntry: secondSet){
+                    if(firstEntry.equals(additionalEntry)){
+                        exist=true;
+                        break;
+                    }
+                }
+                if (false==exist){
+                    System.out.println(firstEntry);
+                }
+            }
+        }
+        catch (Exception e){
+            throw new Exception();
+        }
     }
 }

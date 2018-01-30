@@ -10,8 +10,8 @@ public class main {
     static Scanner reader = new Scanner(System.in);
     public static void main(String[] args){
         Set<String> someWords = new HashSet<String>();
-        System.out.print("Developed by /u03C9/");
-        System.out.println("Словарь v0.5b");
+        System.out.println("Developed by \u03C9\u03C4");
+        System.out.println("Словарь v0.6b");
         System.out.print("Чтение файла... ");
         try{
             FileReader fr = new FileReader("mainVocabulary.txt");
