@@ -80,19 +80,51 @@ public class setMethods {
                 }
                 break;
             case 5:
-
+                System.out.println("проверяем первый словарь на вхождение в него второго...");
+                if(mainVocabulary.containsAll(additionalVocabulary)){
+                    System.out.println("Есть.");
+                } else{
+                    System.out.println("Нет.");
+                }
                 break;
             case 6:
+                System.out.println("Сравниваем первый и второй словари...");
+                if(mainVocabulary.equals(additionalVocabulary)){
+                    System.out.println("Есть.");
+                } else{
+                    System.out.println("Нет.");
+                }
                 break;
             case 7:
+                System.out.println("Проверяем, пуст ли первый словарь...");
+                if(mainVocabulary.isEmpty()){
+                    System.out.println("Пуст.");
+                } else{
+                    System.out.println("Не пуст.");
+                }
                 break;
             case 8:
+                System.out.println("Удалить из первого словаря слово?..");
+                mainVocabulary.remove(reader.next());
+                System.out.println("Готово.");
                 break;
             case 9:
+                System.out.println("Удаляем из первого словаря второй...");
+                mainVocabulary.removeAll(additionalVocabulary);
+                System.out.println("Готово.");
                 break;
             case 10:
+                System.out.println("Удаляем из первого словаря всё, кроме второго...");
+                mainVocabulary.retainAll(additionalVocabulary);
+                System.out.println("Готово.");
                 break;
             case 11:
+                System.out.println("Узнаём размер первого словаря...");
+                System.out.println(mainVocabulary.size());
+                System.out.println("Готово.");
+                break;
+            case 12:
+
                 break;
              default:
                 break;
