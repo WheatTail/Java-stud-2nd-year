@@ -16,10 +16,10 @@ public class compare {
             while (read.hasNextLine()){
                 mainVocabulary.add(read.nextLine());
             }
-            System.out.println("Ок");
+            System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
         }
         catch (FileNotFoundException e){
-            System.out.print("Основной словарь не найден");
+            System.out.print("[ERR]Основной словарь не найден");
             return;
         }
         catch (Exception e){
@@ -32,10 +32,10 @@ public class compare {
             while (read.hasNextLine()){
                 additionalVocabulary.add(read.nextLine());
             }
-            System.out.println("Ок");
+            System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
         }
         catch (FileNotFoundException e){
-            System.out.print("Дополнительный словарь не найден");
+            System.out.print("["+(char)27+"[31mERR"+(char)27+"[30m]дополнительный словарь не найден");
             return;
         }
         catch (Exception e){
@@ -63,7 +63,7 @@ public class compare {
                     leftRightCompare(mainVocabulary, additionalVocabulary);
                 }
                 catch (Exception e){
-                    System.out.println("Непредвиденная ошибка");
+                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
                     e.printStackTrace();
                 }
                 break;
@@ -73,7 +73,7 @@ public class compare {
                     leftRightCompare(additionalVocabulary, mainVocabulary);
                 }
                 catch (Exception e){
-                    System.out.println("Непредвиденная ошибка");
+                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
                     e.printStackTrace();
                 }
                 break;

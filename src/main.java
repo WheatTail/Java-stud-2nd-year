@@ -12,25 +12,25 @@ public class main {
         Set<String> someWords = new HashSet<String>();
         System.out.println("Developed by \u03C9\u03C4");
         System.out.println("Словарь v0.6b");
-        System.out.print("Чтение файла... ");
+        System.out.print("Чтение основного словаря... ");
         try{
             FileReader fr = new FileReader("mainVocabulary.txt");
             Scanner read = new Scanner(fr);
             while (read.hasNextLine()){
                 someWords.add(read.nextLine());
             }
-            System.out.println("Ок");
+            System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
         }
         catch (FileNotFoundException e){
-            System.out.print("Файл не найден");
+            System.out.print("["+(char)27+"[31mERR"+(char)27+"[30m]Файл не найден");
             return;
         }
         catch (Exception e){
-            System.out.println("Непредвиденная ошибка");
+            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
             e.printStackTrace();
             return;
         }
-        System.out.println("Вывод содержимого словаря...");
+        System.out.println("Вывод содержимого основного словаря...");
         for (String entry: someWords) {
             System.out.println(entry);
         }
@@ -59,7 +59,7 @@ public class main {
                     cmp.main(args);
                 }
                 catch (Exception e){
-                    System.out.println("Непредвиденная ошибка");
+                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
                     e.printStackTrace();
                     return;
                 }
@@ -77,11 +77,11 @@ public class main {
             fw.close();
         }
         catch (IOException e){
-            System.out.print("Ошибка ввода-вывода");
+            System.out.print("["+(char)27+"[31mERR"+(char)27+"[30m]Ошибка ввода-вывода");
             return;
         }
         catch (Exception e){
-            System.out.println("Непредвиденная ошибка");
+            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
             e.printStackTrace();
             return;
         }
