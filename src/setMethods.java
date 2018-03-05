@@ -43,7 +43,6 @@ public class setMethods {
             throw new Exception();
         }
 
-
         System.out.println("1) Добавить элемент в первый словарь");
         System.out.println("2) Добавить в первый словарь второй");
         System.out.println("3) Очистка словаря");
