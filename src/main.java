@@ -34,7 +34,7 @@ public class main {
         for (String entry: someWords) {
             System.out.println(entry);
         }
-        System.out.println("Чтобы внести новые слова в основной словарь введите Add, чтобы выйти - Exit, чтобы запустить сравнение основного и дополнительного словарей - Compare");
+        System.out.println("Чтобы внести новые слова в основной словарь введите Add, чтобы выйти - Exit, чтобы запустить сравнение основного и дополнительного словарей - Compare, для вызова класса с реализацией методов - Meth");
         String responce = reader.next();
         responce = responce.toLowerCase();
         switch (responce){
@@ -57,6 +57,17 @@ public class main {
                 try {
                     compare cmp = new compare();
                     cmp.main(args);
+                }
+                catch (Exception e){
+                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+                    e.printStackTrace();
+                    return;
+                }
+                break;
+            case "meth":
+                try {
+                     setMethods meth = new setMethods();
+                     meth.main(args);
                 }
                 catch (Exception e){
                     System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");

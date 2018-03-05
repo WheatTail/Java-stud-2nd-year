@@ -42,6 +42,8 @@ public class setMethods {
         catch (Exception e){
             throw new Exception();
         }
+
+
         System.out.println("1) Добавить элемент в первый словарь");
         System.out.println("2) Добавить в первый словарь второй");
         System.out.println("3) Очистка словаря");
@@ -55,79 +57,86 @@ public class setMethods {
         System.out.println("11) Размер первого словаря");
         System.out.println("12) Сделать из первого словаря - массив");
         int responce = reader.nextInt();
-        switch (responce){
-            case 1:
-                System.out.println("Введите слово для добавления");
-                mainVocabulary.add(reader.next());
-                System.out.println("Готово.");
-                break;
-            case 2:
-                System.out.println("Добавляпем второй словарь в первый...");
-                mainVocabulary.addAll(additionalVocabulary);
-                System.out.println("Готово.");
-                break;
-            case 3:
-                System.out.println("Очищаем словарь...");
-                mainVocabulary.clear();
-                System.out.println("Готово.");
-                break;
-            case 4:
-                System.out.println("Проверить на содержание слова?..");
-                if(mainVocabulary.contains(reader.next())){
-                    System.out.println("Есть.");
-                } else{
-                    System.out.println("Нет.");
-                }
-                break;
-            case 5:
-                System.out.println("проверяем первый словарь на вхождение в него второго...");
-                if(mainVocabulary.containsAll(additionalVocabulary)){
-                    System.out.println("Есть.");
-                } else{
-                    System.out.println("Нет.");
-                }
-                break;
-            case 6:
-                System.out.println("Сравниваем первый и второй словари...");
-                if(mainVocabulary.equals(additionalVocabulary)){
-                    System.out.println("Есть.");
-                } else{
-                    System.out.println("Нет.");
-                }
-                break;
-            case 7:
-                System.out.println("Проверяем, пуст ли первый словарь...");
-                if(mainVocabulary.isEmpty()){
-                    System.out.println("Пуст.");
-                } else{
-                    System.out.println("Не пуст.");
-                }
-                break;
-            case 8:
-                System.out.println("Удалить из первого словаря слово?..");
-                mainVocabulary.remove(reader.next());
-                System.out.println("Готово.");
-                break;
-            case 9:
-                System.out.println("Удаляем из первого словаря второй...");
-                mainVocabulary.removeAll(additionalVocabulary);
-                System.out.println("Готово.");
-                break;
-            case 10:
-                System.out.println("Удаляем из первого словаря всё, кроме второго...");
-                mainVocabulary.retainAll(additionalVocabulary);
-                System.out.println("Готово.");
-                break;
-            case 11:
-                System.out.println("Узнаём размер первого словаря...");
-                System.out.println(mainVocabulary.size());
-                System.out.println("Готово.");
-                break;
-            case 12:
-
-                break;
-             default:
-                break;
+        try{
+            switch (responce){
+                case 1:
+                    System.out.println("Введите слово для добавления");
+                    mainVocabulary.add(reader.next());
+                    System.out.println("Готово.");
+                    break;
+                case 2:
+                    System.out.println("Добавляпем второй словарь в первый...");
+                    mainVocabulary.addAll(additionalVocabulary);
+                    System.out.println("Готово.");
+                    break;
+                case 3:
+                    System.out.println("Очищаем словарь...");
+                    mainVocabulary.clear();
+                    System.out.println("Готово.");
+                    break;
+                case 4:
+                    System.out.println("Проверить на содержание слова?..");
+                    if(mainVocabulary.contains(reader.next())){
+                        System.out.println("Есть.");
+                    } else{
+                        System.out.println("Нет.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("проверяем первый словарь на вхождение в него второго...");
+                    if(mainVocabulary.containsAll(additionalVocabulary)){
+                        System.out.println("Есть.");
+                    } else{
+                        System.out.println("Нет.");
+                    }
+                    break;
+                case 6:
+                    System.out.println("Сравниваем первый и второй словари...");
+                    if(mainVocabulary.equals(additionalVocabulary)){
+                        System.out.println("Есть.");
+                    } else{
+                        System.out.println("Нет.");
+                    }
+                    break;
+                case 7:
+                    System.out.println("Проверяем, пуст ли первый словарь...");
+                    if(mainVocabulary.isEmpty()){
+                        System.out.println("Пуст.");
+                    } else{
+                        System.out.println("Не пуст.");
+                    }
+                    break;
+                case 8:
+                    System.out.println("Удалить из первого словаря слово?..");
+                    mainVocabulary.remove(reader.next());
+                    System.out.println("Готово.");
+                    break;
+                case 9:
+                    System.out.println("Удаляем из первого словаря второй...");
+                    mainVocabulary.removeAll(additionalVocabulary);
+                    System.out.println("Готово.");
+                    break;
+                case 10:
+                    System.out.println("Удаляем из первого словаря всё, кроме второго...");
+                    mainVocabulary.retainAll(additionalVocabulary);
+                    System.out.println("Готово.");
+                    break;
+                case 11:
+                    System.out.println("Узнаём размер первого словаря...");
+                    System.out.println(mainVocabulary.size());
+                    System.out.println("Готово.");
+                    break;
+                case 12:
+                    System.out.println("Делаем из первого словаря массив...");
+                    String[] stringFromArray = mainVocabulary.toArray(new String[mainVocabulary.size()]);
+                    System.out.println("Готово.");
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch (Exception e){
+            throw new Exception();
         }
     }
 }
