@@ -31,7 +31,7 @@ public class directAccessFile {
                     file = new RandomAccessFile("vocabulary.wt", "rw");
                     for (String entry: vocabulary){
                         int stringSize=entry.length();
-                        int pointForInsert=stringSize;
+                        //int pointForInsert=stringSize;
                         StringBuffer buffer = new StringBuffer(entry);
                         if (stringSize>15){
                             throw new Exception();

@@ -12,6 +12,44 @@ public class main {
         Set<String> someWords = new HashSet<String>();
         System.out.println("Developed by \u03C9\u03C4");
         System.out.println("Словарь v0.6b");
+
+        int mianStartByte=0;
+        int additionaStartByte=0;
+        int directStartByte=0;
+
+
+        System.out.println("Чтение файла настроек...");
+
+        try {
+            FileReader fr = new FileReader("settings.ini");
+            Scanner read = new Scanner(fr);
+            int count=0;
+            while (read.hasNextLine()){
+                switch (count){
+                    case 0:
+                        mianStartByte=Integer.parseInt(read.nextLine());
+                        count++;
+                        break;
+                    case 1:
+                        additionaStartByte=Integer.parseInt(read.nextLine());
+                        count++;
+                        break;
+                    case 2:
+                        directStartByte=Integer.parseInt(read.nextLine());
+                        count++;
+                        break;
+                    default:
+                        throw new Exception();
+                }
+            }
+        }
+        catch (FileNotFoundException e){
+
+        }
+        catch (Exception e){
+
+        }
+        System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
         System.out.print("Чтение основного словаря... ");
         try{
             FileReader fr = new FileReader("mainVocabulary.txt");
@@ -37,7 +75,6 @@ public class main {
         System.out.println("Чтобы внести новые слова в основной словарь введите Add, чтобы выйти - Exit, чтобы запустить сравнение основного и дополнительного словарей - Compare, для вызова класса с реализацией методов - Meth, для вызова класса работы с файлом прямого доступа - Direct");
         String responce = reader.next();
         responce = responce.toLowerCase();
-
 
         switch (responce){
             case "add":

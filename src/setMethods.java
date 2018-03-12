@@ -10,6 +10,8 @@ public class setMethods {
     public static void main(String[] args) throws Exception{
         Set<String> mainVocabulary = new HashSet<String>();
         Set<String> additionalVocabulary = new HashSet<String>();
+
+
         System.out.print("Чтение основного словаря... ");
         try {
             FileReader fr = new FileReader("mainVocabulary.txt");
