@@ -1,7 +1,4 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -9,59 +6,68 @@ import java.util.Set;
 public class main {
     static Scanner reader = new Scanner(System.in);
     public static void main(String[] args){
+        RandomAccessFile file;
         Set<String> someWords = new HashSet<String>();
+        String[] iniFile = new String[100];
+        int iniCounter=0;
+        int mainStartByte=0;
+        int additionaStartByte=0;
+        int directStartByte=0;
         System.out.println("Developed by \u03C9\u03C4");
         System.out.println("Словарь v0.6b");
 
-        int mianStartByte=0;
-        int additionaStartByte=0;
-        int directStartByte=0;
-
-
-        System.out.println("Чтение файла настроек...");
+        System.out.print("Чтение файла настроек...");
 
         try {
             FileReader fr = new FileReader("settings.ini");
             Scanner read = new Scanner(fr);
-            int count=0;
+            System.out.println();
             while (read.hasNextLine()){
-                switch (count){
-                    case 0:
-                        mianStartByte=Integer.parseInt(read.nextLine());
-                        count++;
-                        break;
-                    case 1:
-                        additionaStartByte=Integer.parseInt(read.nextLine());
-                        count++;
-                        break;
-                    case 2:
-                        directStartByte=Integer.parseInt(read.nextLine());
-                        count++;
-                        break;
-                    default:
-                        throw new Exception();
-                }
+                iniFile[iniCounter]=read.nextLine();
+                iniCounter++;
             }
+            int b = iniCounter;
+            for (int i = 0; i<b;i++){
+                System.out.println(iniFile[i]);
+            }
+
+            /*while (read.hasNextLine()){
+                iniFile[iniCounter]=read.nextLine();
+                if (!iniFile[iniCounter].substring(0,1).equals('#')){
+                    if(iniFile[iniCounter].contains("main")){
+                        String a=iniFile[iniCounter];
+                        mainStartByte=Integer.parseInt(a);
+                    }
+                    if(iniFile[iniCounter].contains("additional")){
+                        additionaStartByte=Integer.parseInt(iniFile[iniCounter]);
+                    }
+                    if(iniFile[iniCounter].contains("direct")){
+                        directStartByte=Integer.parseInt(iniFile[iniCounter]);
+                    }
+                }
+                iniCounter++;
+            }*/
         }
         catch (FileNotFoundException e){
 
         }
         catch (Exception e){
-
+            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+            e.printStackTrace();
+            return;
         }
         System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
-        System.out.print("Чтение основного словаря... ");
+        System.out.print("Чтение основного словаря...");
         try{
-            FileReader fr = new FileReader("mainVocabulary.txt");
-            Scanner read = new Scanner(fr);
-            while (read.hasNextLine()){
-                someWords.add(read.nextLine());
+            file = new RandomAccessFile("vocabulary.wt", "rw");
+            file.seek(mainStartByte);
+            String tempString;
+            tempString=file.readLine();
+            for (int i=0;i<tempString.length()/15;i++){
+                someWords.add(tempString.substring(i*15,(i+1)*15).replaceAll("\\.",""));
             }
+            file.close();
             System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
-        }
-        catch (FileNotFoundException e){
-            System.out.print("["+(char)27+"[31mERR"+(char)27+"[30m]Файл не найден");
-            return;
         }
         catch (Exception e){
             System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
@@ -129,7 +135,7 @@ public class main {
                 System.out.println("Неверное значение приводит к завершению программы.");
                 break;
         }
-        try {
+        /*try {
             FileWriter fw = new FileWriter("mainVocabulary.txt");
             for (String entry: someWords){
                 fw.write(entry+"\r\n");
@@ -145,6 +151,6 @@ public class main {
             System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
             e.printStackTrace();
             return;
-        }
+        }*/
     }
 }
