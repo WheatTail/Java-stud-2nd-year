@@ -9,6 +9,7 @@ public class main {
         RandomAccessFile file;
         Set<String> someWords = new HashSet<String>();
         String[] iniFile = new String[100];
+        String str;
         int iniCounter=0;
         int mainStartByte=0;
         int additionaStartByte=0;
@@ -24,44 +25,54 @@ public class main {
             System.out.println();
             while (read.hasNextLine()){
                 iniFile[iniCounter]=read.nextLine();
-                iniCounter++;
-            }
-            int b = iniCounter;
-            for (int i = 0; i<b;i++){
-                System.out.println(iniFile[i]);
-            }
-
-            /*while (read.hasNextLine()){
-                iniFile[iniCounter]=read.nextLine();
-                if (!iniFile[iniCounter].substring(0,1).equals('#')){
+                if (!iniFile[iniCounter].substring(0,1).equals("#")){
                     if(iniFile[iniCounter].contains("main")){
-                        String a=iniFile[iniCounter];
-                        mainStartByte=Integer.parseInt(a);
+                        str=iniFile[iniCounter];
+                        str=str.replaceAll("[^0-9]","");
+                        System.out.println(str);
+                        mainStartByte=Integer.parseInt(str);
                     }
                     if(iniFile[iniCounter].contains("additional")){
-                        additionaStartByte=Integer.parseInt(iniFile[iniCounter]);
+                        str=iniFile[iniCounter];
+                        str=str.replaceAll("[^0-9]","");
+                        additionaStartByte=Integer.parseInt(str);
                     }
                     if(iniFile[iniCounter].contains("direct")){
-                        directStartByte=Integer.parseInt(iniFile[iniCounter]);
+                        str=iniFile[iniCounter];
+                        str=str.replaceAll("[^0-9]","");
+                        directStartByte=Integer.parseInt(str);
                     }
                 }
                 iniCounter++;
-            }*/
+            }
         }
         catch (FileNotFoundException e){
 
         }
         catch (Exception e){
-            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка]");
             e.printStackTrace();
             return;
         }
         System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
         System.out.print("Чтение основного словаря...");
         try{
+            String tempString;
             file = new RandomAccessFile("vocabulary.wt", "rw");
             file.seek(mainStartByte);
-            String tempString;
+            tempString=file.readLine();
+            System.out.println(tempString.length());
+            for (int i=0;i<tempString.length()/15;i++){
+                someWords.add(tempString.substring(i*15,(i+1)*15).replaceAll("\\.",""));
+            }
+            file.seek(additionaStartByte);
+            tempString=file.readLine();
+            System.out.println(tempString);
+            for (int i=0;i<tempString.length()/15;i++){
+                someWords.add(tempString.substring(i*15,(i+1)*15).replaceAll("\\.",""));
+                System.out.println(someWords.add(tempString.substring(i*15,(i+1)*15).replaceAll("\\.","")));
+            }
+            file.seek(directStartByte);
             tempString=file.readLine();
             for (int i=0;i<tempString.length()/15;i++){
                 someWords.add(tempString.substring(i*15,(i+1)*15).replaceAll("\\.",""));
@@ -70,7 +81,7 @@ public class main {
             System.out.println("["+(char)27+"[32mOK"+(char)27+"[30m"+"]");
         }
         catch (Exception e){
-            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка]");
             e.printStackTrace();
             return;
         }
@@ -104,7 +115,7 @@ public class main {
                     cmp.main(args);
                 }
                 catch (Exception e){
-                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка]");
                     e.printStackTrace();
                     return;
                 }
@@ -115,7 +126,7 @@ public class main {
                      meth.main(args);
                 }
                 catch (Exception e){
-                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка]");
                     e.printStackTrace();
                     return;
                 }
@@ -123,10 +134,10 @@ public class main {
             case "direct":
                 try {
                     directAccessFile direct = new directAccessFile();
-                    directAccessFile.main(args);
+                    direct.main(args);
                 }
                 catch (Exception e){
-                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+                    System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка]");
                     e.printStackTrace();
                     return;
                 }
@@ -148,7 +159,7 @@ public class main {
             return;
         }
         catch (Exception e){
-            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка");
+            System.out.println("["+(char)27+"[31mERR"+(char)27+"[30m]Непредвиденная ошибка]");
             e.printStackTrace();
             return;
         }*/
